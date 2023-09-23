@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
 typedef int datatype;
 
@@ -21,6 +22,7 @@ Tlist searchList(const Tlist&, const datatype&);
 datatype sumList(const Tlist&);
 void printList(const Tlist&, const Tlist&);
 void printList(const Tlist&);
+void createFromSeries(Tlist&, std::vector<datatype>);
 // void createAsStack(Tlist& , const datatype );
 // void createAsQueue(Tlist& , const datatype );
 // Tlist findPlace(const Tlist& , const datatype );
@@ -29,6 +31,9 @@ void printList(const Tlist&);
 
 
 // HomeWork_1
-void betweenZeros(const Tlist&); // done
+void betweenZeros(const Tlist&);  // done
+
+inline bool isOdd(const datatype&);
 void deleteOddGroup(Tlist&);
-void deleteAllNegativeNums(Tlist&); // done
+
+void deleteAllNegativeNums(Tlist&);  // done

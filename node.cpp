@@ -76,13 +76,31 @@ void printList(const Tlist& begin, const Tlist& end) {
 }
 
 void printList(const Tlist& head) {
-  Tlist p = head;
-  while (p != nullptr) {
-    std::cout << p->data << " ";
-    p = p->next;
+  if (!isEmpty(head)) {
+    Tlist p = head;
+    while (p != nullptr) {
+      std::cout << p->data << " ";
+      p = p->next;
+    }
+  } else {
+    std::cout << "Empty list.";
   }
 }
 
+void createFromSeries(Tlist& head, std::vector<datatype> vec) {
+  if (vec.size() > 0) {
+    clearList(head);
+    addToHead(head, vec[0]);
+    Tlist p = head;
+    for (int i = 1; i < vec.size(); ++i) {
+      addAfterNode(p, vec[i]);
+      p = p->next;
+    }
+    p = nullptr;
+  } else {
+    std::cout << "Not enough elems.";
+  }
+}
 // void createAsStack(Tlist& , const datatype );
 // void createAsQueue(Tlist& , const datatype );
 // Tlist findPlace(const Tlist&, const datatype);
@@ -109,39 +127,59 @@ void betweenZeros(const Tlist& head) {
   }
 }
 
-void deleteOddGroup(Tlist &head) {
-   Tlist p = head;
-  //Tlist h = head->next;
-   Tlist beginOdd = nullptr;
-   Tlist endOdd = nullptr;
+inline bool isOdd(const datatype& number) { return (int(number) % 2 != 0); }
 
-   while (p != nullptr) {
-     if (p->data % 2 != 0) {
-       Tlist h = p->next;
-       bool flag = false;
-       while (h->data % 2 != 0) {
-         flag = true;
-         h = h->next;
-       }
-       beginOdd = p;
-       endOdd = h;
-     }
+void deleteOddGroup(Tlist& head) {
+  if (!isEmpty(head) && head->next != nullptr) {
+    Tlist p = head;
+    // (beginOdd, endOdd)
+    Tlist beginOdd = nullptr;
+    Tlist endOdd = nullptr;
 
-    p = p->next;
+    if (isOdd(head->data) && isOdd(head->next->data)) {
+      while (isOdd(head->data)) {
+        deleteFromHead(head);
+      }
+    } else {
+      bool flag = false;
+      while (p->next != nullptr && !flag) {
+        if (isOdd(p->next->data)) {
+          beginOdd = p;
+          Tlist h = p->next->next;
+          while (h != nullptr && isOdd(h->data)) {
+            flag = true;
+            h = h->next;
+          }
+          endOdd = h;
+        }
+        p = p->next;
+      }
+      if (!flag) {
+        std::cout << "No elements to delete." << std::endl;
+      } else {
+        while (beginOdd->next != endOdd) {
+          deleteAfterNode(beginOdd);
+        }
+      }
+    }
+  } else {
+    std::cout << "Empty list or no odd elements to delete.";
   }
-
-  //Tlist p = head;
-  //while (p->next->data % 2 == 0 && p->next != nullptr) {
-  //  p = p->next;
-  //}
-  //while (p->next->data % 2 != 0) {
-  //  deleteAfterNode(p);
-  //}
 }
+
+// не обращайте внимание...
+// std::cout << beginOdd->data << " - ";
+// if (endOdd == nullptr) {
+//   std::cout << endOdd << std::endl;
+// }
+// else {
+//   std::cout << endOdd->data << std::endl;
+// }
+// std::cout << flag << std::endl;
 
 void deleteAllNegativeNums(Tlist& head) {
   if (!isEmpty(head)) {
-    while (head->data < 0) deleteFromHead(head);
+    while (head != nullptr && head->data < 0) deleteFromHead(head);
     Tlist p = head;
     while (p != nullptr) {
       while (p->next != nullptr && p->next->data < 0) deleteAfterNode(p);
