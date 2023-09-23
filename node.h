@@ -34,6 +34,6 @@ void createFromSeries(Tlist&, std::vector<datatype>);
 void betweenZeros(const Tlist&);  // done
 
 inline bool isOdd(const datatype&);
-void deleteOddGroup(Tlist&);
+void deleteOddGroup(Tlist&); // done
 
 void deleteAllNegativeNums(Tlist&);  // done
