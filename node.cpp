@@ -109,25 +109,34 @@ void betweenZeros(const Tlist& head) {
   }
 }
 
-void deleteOddGroup(Tlist& head) {
-  Tlist p = head;
+void deleteOddGroup(Tlist &head) {
+   Tlist p = head;
   //Tlist h = head->next;
-  Tlist beginOdd = nullptr;
-  Tlist endOdd = nullptr;
+   Tlist beginOdd = nullptr;
+   Tlist endOdd = nullptr;
 
-  while (p != nullptr) {
-    if (p->data % 2 != 0) {
-      Tlist h = p->next;
-      bool flag = false;
-      while (h->data % 2 != 0) {
-        flag = true;
-        h = h->next;
-      }
-    }
-
+   while (p != nullptr) {
+     if (p->data % 2 != 0) {
+       Tlist h = p->next;
+       bool flag = false;
+       while (h->data % 2 != 0) {
+         flag = true;
+         h = h->next;
+       }
+       beginOdd = p;
+       endOdd = h;
+     }
 
     p = p->next;
   }
+
+  //Tlist p = head;
+  //while (p->next->data % 2 == 0 && p->next != nullptr) {
+  //  p = p->next;
+  //}
+  //while (p->next->data % 2 != 0) {
+  //  deleteAfterNode(p);
+  //}
 }
 
 void deleteAllNegativeNums(Tlist& head) {

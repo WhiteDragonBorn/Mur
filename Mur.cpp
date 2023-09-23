@@ -35,7 +35,17 @@ int main() {
   std::cout << std::endl;
   deleteAllNegativeNums(TestNegative);
   printList(TestNegative);
+  std::cout << std::endl;
 
+  Tlist TestOdd = nullptr;
+  addToHead(TestOdd, 1);
+  addToHead(TestOdd, 2);
+  addToHead(TestOdd, 1);
+  addToHead(TestOdd, 1);
+  printList(TestOdd);
+  std::cout << std::endl;
+  deleteOddGroup(TestOdd);
+  printList(TestOdd);
 
   //Tlist beg = Test;
   /*while (beg != nullptr) {
