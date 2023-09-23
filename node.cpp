@@ -75,6 +75,14 @@ void printList(const Tlist& begin, const Tlist& end) {
   }
 }
 
+void printList(const Tlist& head) {
+  Tlist p = head;
+  while (p != nullptr) {
+    std::cout << p->data << " ";
+    p = p->next;
+  }
+}
+
 // void createAsStack(Tlist& , const datatype );
 // void createAsQueue(Tlist& , const datatype );
 // Tlist findPlace(const Tlist&, const datatype);
@@ -93,9 +101,42 @@ void betweenZeros(const Tlist& head) {
       } else {
         printList(fZero, sZero);
       }
-    }
-    else {
+    } else {
       std::cout << "Not enough zeros found.";
+    }
+  } else {
+    std::cout << "Empty list.";
+  }
+}
+
+void deleteOddGroup(Tlist& head) {
+  Tlist p = head;
+  //Tlist h = head->next;
+  Tlist beginOdd = nullptr;
+  Tlist endOdd = nullptr;
+
+  while (p != nullptr) {
+    if (p->data % 2 != 0) {
+      Tlist h = p->next;
+      bool flag = false;
+      while (h->data % 2 != 0) {
+        flag = true;
+        h = h->next;
+      }
+    }
+
+
+    p = p->next;
+  }
+}
+
+void deleteAllNegativeNums(Tlist& head) {
+  if (!isEmpty(head)) {
+    while (head->data < 0) deleteFromHead(head);
+    Tlist p = head;
+    while (p != nullptr) {
+      while (p->next != nullptr && p->next->data < 0) deleteAfterNode(p);
+      p = p->next;
     }
   } else {
     std::cout << "Empty list.";

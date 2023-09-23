@@ -4,17 +4,38 @@
 #include "node.h"
 
 int main() {
-  Tlist Test = nullptr;
-  addToHead(Test, 0);
-  addToHead(Test, 11);
-  addToHead(Test, -1);
-  addToHead(Test, 0);
-  addToHead(Test, 8);
-  addToHead(Test, 9);
-  addToHead(Test, 0);
+  Tlist TestZeros = nullptr;
+  addToHead(TestZeros, 0);
+  addToHead(TestZeros, 11);
+  addToHead(TestZeros, -1);
+  addToHead(TestZeros, 0);
+  addToHead(TestZeros, 8);
+  addToHead(TestZeros, 9);
+  addToHead(TestZeros, 0);
 
+  printList(TestZeros);
+  std::cout << std::endl;
+  betweenZeros(TestZeros);
+  std::cout << std::endl;
 
-  betweenZeros(Test);
+  Tlist TestNegative = nullptr;
+  addToHead(TestNegative, -1);
+  addToHead(TestNegative, -1);
+  addToHead(TestNegative, 3);
+  addToHead(TestNegative, -1);
+  addToHead(TestNegative, -1);
+  addToHead(TestNegative, 2);
+  addToHead(TestNegative, -1);
+  addToHead(TestNegative, 1);
+  addToHead(TestNegative, 0);
+  addToHead(TestNegative, -1);
+  addToHead(TestNegative, -1);
+
+  printList(TestNegative);
+  std::cout << std::endl;
+  deleteAllNegativeNums(TestNegative);
+  printList(TestNegative);
+
 
   //Tlist beg = Test;
   /*while (beg != nullptr) {

@@ -20,6 +20,7 @@ void clearList(Tlist&);
 Tlist searchList(const Tlist&, const datatype&);
 datatype sumList(const Tlist&);
 void printList(const Tlist&, const Tlist&);
+void printList(const Tlist&);
 // void createAsStack(Tlist& , const datatype );
 // void createAsQueue(Tlist& , const datatype );
 // Tlist findPlace(const Tlist& , const datatype );
@@ -28,4 +29,6 @@ void printList(const Tlist&, const Tlist&);
 
 
 // HomeWork_1
-void betweenZeros(const Tlist&);
+void betweenZeros(const Tlist&); // done
+void deleteOddGroup(Tlist&);
+void deleteAllNegativeNums(Tlist&); // done
