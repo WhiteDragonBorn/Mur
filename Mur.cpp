@@ -4,6 +4,8 @@
 #include "node.h"
 
 int main() {
+  srand(time(NULL));
+
   // ------------------------ FIRST LAB
   Tlist TestZeros = nullptr;
   std::vector<datatype> TZ_1{0, 9, 8, 0, -1, 11, 0};
@@ -101,4 +103,20 @@ int main() {
   std::cout << std::endl << std::endl << std::endl;
   std::cout << "-----------------------------------" << std::endl;
   // ------------------------ THIRD LAB END
+
+
+  // ------------------------ OTHER TESTS
+  Tlist listQueue = nullptr;
+  Tlist listStack = nullptr;
+  Tlist listOrder = nullptr;
+  listQueue = createAsQueue(10);
+  listStack = createAsStack(10);
+  listOrder = createByOrder(10);
+  std::cout << std::endl << "Queue: ";
+  printList(listQueue);
+  std::cout << std::endl << "Stack: ";
+  printList(listStack);
+  std::cout << std::endl << "Ordered: ";
+  printList(listOrder);
+  // ------------------------ OTHER TESTS END
 }

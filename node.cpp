@@ -101,10 +101,60 @@ void createFromSeries(Tlist& head, std::vector<datatype> vec) {
     std::cout << "Not enough elems.";
   }
 }
-// void createAsStack(Tlist& , const datatype );
-// void createAsQueue(Tlist& , const datatype );
-// Tlist findPlace(const Tlist&, const datatype);
-// void createByOrder(Tlist& , const datatype );
+
+// LIFO
+Tlist createAsStack(const datatype num) {
+  Tlist head = nullptr;
+  for (datatype i = 1; i < num; ++i) {
+    addToHead(head, i);
+  }
+  return head;
+}
+
+Tlist createAsQueue(const datatype num) {
+  Tlist head = nullptr;
+  Tlist moveN = nullptr;
+  addToHead(head, 1);
+  moveN = head;
+  for (datatype i = 2; i < num; ++i) {
+    addAfterNode(moveN, i);
+    moveN = moveN->next;
+  }
+  return head;
+}
+
+Tlist findPlace(const Tlist& head, const datatype value) { 
+  Tlist p = head;
+  Tlist toReturn = nullptr;
+
+  if (p->data > value) {
+    return toReturn;
+  }
+
+  while (toReturn == nullptr && p != nullptr) {
+    if (p->next == nullptr || p->next->data > value) {
+      toReturn = p;
+    }
+    p = p->next;
+  }
+  return toReturn;
+}
+
+Tlist createByOrder(const datatype num) {
+  Tlist head = nullptr;
+  datatype temp = rand() % 99 + 1;
+  addToHead(head, temp);
+  for (int i = 1; i < num; ++i) {
+    temp = rand() % 99 + 1;
+    Tlist temp_p = findPlace(head, temp);
+    if (temp_p == nullptr) {
+      addToHead(head, temp);
+    } else {
+      addAfterNode(temp_p, temp);
+    }
+  }
+  return head;
+}
 
 void betweenZeros(const Tlist& head) {
   if (!isEmpty(head)) {

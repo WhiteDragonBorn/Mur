@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 typedef int datatype;
 
@@ -23,10 +24,10 @@ datatype sumList(const Tlist&);
 void printList(const Tlist&, const Tlist&);
 void printList(const Tlist&);
 void createFromSeries(Tlist&, std::vector<datatype>);
-// void createAsStack(Tlist& , const datatype );
-// void createAsQueue(Tlist& , const datatype );
-// Tlist findPlace(const Tlist& , const datatype );
-// void createByOrder(Tlist& , const datatype );
+Tlist createAsStack(const datatype);
+Tlist createAsQueue(const datatype);
+Tlist findPlace(const Tlist& , const datatype);
+Tlist createByOrder(const datatype);
 
 
 
