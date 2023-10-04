@@ -38,3 +38,15 @@ inline bool isOdd(const datatype&);
 void deleteOddGroup(Tlist&); // done
 
 void deleteAllNegativeNums(Tlist&);  // done
+
+
+// selection sort
+void selListSort(const Tlist& head);
+void swapListNodes(Tlist a, Tlist b);
+bool isEqual(const Tlist&fHead, const Tlist &sHead);
+
+
+// ДЗ
+// 1) Поменять местами первый и последний элементы списка путем перестановки ссылок
+// 2) Поменять местами макс и мин ссылками, они единственны
+// 3) Проверить содержит ли один список другой список

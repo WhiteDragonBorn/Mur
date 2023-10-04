@@ -114,6 +114,9 @@ int main() {
   listOrder = createByOrder(10);
   std::cout << std::endl << "Queue: ";
   printList(listQueue);
+  std::cout << std::endl;
+  selListSort(listQueue);
+  printList(listQueue);
   std::cout << std::endl << "Stack: ";
   printList(listStack);
   std::cout << std::endl << "Ordered: ";

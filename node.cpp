@@ -123,7 +123,7 @@ Tlist createAsQueue(const datatype num) {
   return head;
 }
 
-Tlist findPlace(const Tlist& head, const datatype value) { 
+Tlist findPlace(const Tlist& head, const datatype value) {
   Tlist p = head;
   Tlist toReturn = nullptr;
 
@@ -238,4 +238,47 @@ void deleteAllNegativeNums(Tlist& head) {
   } else {
     std::cout << "Empty list.";
   }
+}
+
+void selListSort(const Tlist& head) {
+  Tlist p = head;
+  if (p == nullptr || p->next == nullptr) return;
+  while (p->next->next != nullptr) {
+    Tlist max = p;
+    Tlist q = p->next;
+    while (q != nullptr) {
+      if (max->data < q->data) max->data = q->data;
+      q = q->next;
+    }
+    if (p->data != max->data) {
+      datatype temp = p->data;
+      p->data = max->data;
+      max->data = temp;
+    }
+    p = p->next;
+  }
+}
+
+void swapListNodes(Tlist a, Tlist b) {
+  a->data += b->data;
+  b->data = a->data - b->data;
+  a->data -= b->data;
+}
+
+bool isEqual(const Tlist& fHead, const Tlist& sHead) {
+  Tlist pf = fHead;
+  Tlist ps = sHead;
+  if (pf == nullptr && ps == nullptr) {
+    return true;
+  }
+  if (pf == nullptr || ps == nullptr) {
+    return false;
+  }
+
+  while (pf != nullptr && ps != nullptr) {
+    if (pf->data != ps->data) return false;
+    pf = pf->next;
+    ps = ps->next;
+  }
+  return pf == ps;
 }
