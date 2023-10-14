@@ -40,7 +40,7 @@ void deleteOddGroup(Tlist&); // done
 void deleteAllNegativeNums(Tlist&);  // done
 
 
-// selection sort
+
 void selListSort(const Tlist& head);
 void swapListNodes(Tlist a, Tlist b);
 bool isEqual(const Tlist&fHead, const Tlist &sHead);
@@ -50,3 +50,9 @@ bool isEqual(const Tlist&fHead, const Tlist &sHead);
 // 1) ѕомен€ть местами первый и последний элементы списка путем перестановки ссылок
 // 2) ѕомен€ть местами макс и мин ссылками, они единственны
 // 3) ѕроверить содержит ли один список другой список
+
+// HomeWork_1
+void swapListEdges(Tlist& head); // done
+void swapListExtremes(Tlist& head); // done
+bool subListSearch(Tlist& f_list, Tlist& s_list); // done
+

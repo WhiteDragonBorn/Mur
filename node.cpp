@@ -240,6 +240,7 @@ void deleteAllNegativeNums(Tlist& head) {
   }
 }
 
+// не работает
 void selListSort(const Tlist& head) {
   Tlist p = head;
   if (p == nullptr || p->next == nullptr) return;
@@ -259,11 +260,13 @@ void selListSort(const Tlist& head) {
   }
 }
 
+// разобрать
 void swapListNodes(Tlist a, Tlist b) {
   a->data += b->data;
   b->data = a->data - b->data;
   a->data -= b->data;
 }
+
 
 bool isEqual(const Tlist& fHead, const Tlist& sHead) {
   Tlist pf = fHead;
@@ -271,7 +274,7 @@ bool isEqual(const Tlist& fHead, const Tlist& sHead) {
   if (pf == nullptr && ps == nullptr) {
     return true;
   }
-  if (pf == nullptr || ps == nullptr) {
+  if (pf == nullptr || ps == nullptr) { // что?
     return false;
   }
 
@@ -281,4 +284,121 @@ bool isEqual(const Tlist& fHead, const Tlist& sHead) {
     ps = ps->next;
   }
   return pf == ps;
+}
+
+void swapListEdges(Tlist& head) {
+  if (head && head->next != nullptr) {  // размер > 1
+    Tlist tail = nullptr;
+
+    if (head->next->next == nullptr) {  // отдельный случай для размера == 2
+      tail = head->next;
+      tail->next = head;
+      head->next = nullptr;
+      head = tail;
+      tail = nullptr;
+      return;
+    }
+
+    Tlist prevTail = head;
+    while (prevTail->next->next != nullptr) {
+      prevTail = prevTail->next;  // находим предпоследнюю ноду
+    }
+    tail = prevTail->next;  // запоминаем последнюю ноду
+
+    tail->next = head->next;
+    head->next = nullptr;
+    prevTail->next = head;
+    head = tail;
+
+    tail = nullptr;
+    prevTail = nullptr;
+  } else
+    return;
+}
+
+
+void swapListExtremes(Tlist& head) {
+  if (head && head->next && head->next->next) {
+    Tlist min_(nullptr), max_(nullptr), prevMin(nullptr), prevMax(nullptr);
+
+    Tlist p = head->next;
+    Tlist pprev = head;
+
+    // поиск максимального
+    max_ = head;
+    int max_i = head->data;
+    while (p) {
+      if (p->data > max_i) {
+        max_i = p->data;
+        prevMax = pprev;
+        max_ = p;
+      }
+      p = p->next;
+      pprev = pprev->next;
+    }
+
+    p = head->next;
+    pprev = head;
+
+    // поиск минимального
+    min_ = head;
+    int min_i = head->data;
+    while (p) {
+      if (p->data < min_i) {
+        min_i = p->data;
+        prevMin = pprev;
+        min_ = p;
+      }
+      p = p->next;
+      pprev = pprev->next;
+    }
+
+    if (max_ != head) {
+      prevMax->next = min_;
+    } else {
+      head = min_;
+    }
+
+    if (prevMin !=
+        nullptr) {  // не можем сделать (min_ != head) из-за строчки 365
+      prevMin->next = max_;
+    } else {
+      head = max_;
+    }
+
+    Tlist temp = min_->next;
+    min_->next = max_->next;
+    max_->next = temp;
+
+  } else {
+    return;
+  }
+}
+
+bool subListSearch(Tlist& f_list, Tlist& s_list) {
+  Tlist p1 = f_list, p2 = s_list;
+
+  if (f_list == nullptr || s_list == nullptr) return false;
+
+  while (s_list != nullptr) {
+    p2 = s_list;
+
+    while (p1 != nullptr) {
+      if (p2 == nullptr) {
+        return false;
+      } else if (p1->data == p2->data) {
+        p1 = p1->next;
+        p2 = p2->next;
+      } else {
+        break;
+      }
+    }
+    if (p1 == nullptr) return true;
+
+    p1 = f_list;
+
+    s_list = s_list->next;
+  }
+
+  return false;
 }
