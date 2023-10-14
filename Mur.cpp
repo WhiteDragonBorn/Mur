@@ -3,12 +3,9 @@
 
 #include "node.h"
 
-using std::endl;
-using std::cout;
-
 int main() {
   srand(time(NULL));
-  /*
+
   // ------------------------ FIRST LAB
   Tlist TestZeros = nullptr;
   std::vector<datatype> TZ_1{0, 9, 8, 0, -1, 11, 0};
@@ -125,29 +122,4 @@ int main() {
   std::cout << std::endl << "Ordered: ";
   printList(listOrder);
   // ------------------------ OTHER TESTS END
-
-  */
-
-  Tlist TestNegative = nullptr;
-  Tlist Test2 = nullptr;
-  std::vector<datatype> TN_1{-3, -2, 3, 2, 4, 1};
-  std::vector<datatype> TN_2{-3, -2, 3, 2, 3};
-  std::vector<datatype> TN_3{-1};
-
-  createFromSeries(TestNegative, TN_1);
-  createFromSeries(Test2, TN_2);
-  cout << subListSearch(Test2, TestNegative);
-
-  //printList(TestNegative);
-  //cout << endl;
-  //swapListExtremes(TestNegative);
-  //printList(TestNegative);
-
-  //cout << endl;
-
-  //createFromSeries(TestNegative, TN_2);
-  //printList(TestNegative);
-  //cout << endl;
-  ////swapListEdges(TestNegative);
-  //printList(TestNegative);
 }

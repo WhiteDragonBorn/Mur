@@ -40,7 +40,7 @@ void deleteOddGroup(Tlist&); // done
 void deleteAllNegativeNums(Tlist&);  // done
 
 
-
+// selection sort
 void selListSort(const Tlist& head);
 void swapListNodes(Tlist a, Tlist b);
 bool isEqual(const Tlist&fHead, const Tlist &sHead);
@@ -51,8 +51,28 @@ bool isEqual(const Tlist&fHead, const Tlist &sHead);
 // 2) ѕомен€ть местами макс и мин ссылками, они единственны
 // 3) ѕроверить содержит ли один список другой список
 
-// HomeWork_1
-void swapListEdges(Tlist& head); // done
-void swapListExtremes(Tlist& head); // done
-bool subListSearch(Tlist& f_list, Tlist& s_list); // done
 
+
+// Ќаписать фукнцию, котора€ переставл€ет элементы в списке в обратном пор€дке
+void reverseList(Tlist& head) {
+  Tlist prev = nullptr, cur = head, next = nullptr;
+  while (cur) {
+    next = cur->next;
+    cur->next = prev;
+    prev = cur;
+    cur = next;
+  }
+  head = prev;
+}
+
+// за один проход списка вывести его середину (если четное количество, то перед серединой)
+// на фоточках
+
+// проверить €вл€етс€ ли он палиндромом
+// на фоточках
+
+// дз
+// задача иосифа флави€: в кругу стоит 41 воин, убивают каждого третьего, куда надо встать чтобы отстатьс€ в живых
+// 1) ¬ списке L периеставить в обратном пор€дке все элементы между первым и последним вхождением элемента E, если E входит в L не менее двух раз
+// 2) ƒаны два упор€доченных по не убыванию списка, объединить эти списки в один, упор€доченный по неубыванию.
+// использу€ перестановку указателей

@@ -312,7 +312,8 @@ void swapListEdges(Tlist& head) {
 
     tail = nullptr;
     prevTail = nullptr;
-  } else
+  }
+  else
     return;
 }
 
@@ -355,14 +356,16 @@ void swapListExtremes(Tlist& head) {
 
     if (max_ != head) {
       prevMax->next = min_;
-    } else {
+    }
+    else {
       head = min_;
     }
 
     if (prevMin !=
-        nullptr) {  // не можем сделать (min_ != head) из-за строчки 365
+      nullptr) {  // не можем сделать (min_ != head) из-за строчки 365
       prevMin->next = max_;
-    } else {
+    }
+    else {
       head = max_;
     }
 
@@ -370,7 +373,8 @@ void swapListExtremes(Tlist& head) {
     min_->next = max_->next;
     max_->next = temp;
 
-  } else {
+  }
+  else {
     return;
   }
 }
@@ -386,10 +390,12 @@ bool subListSearch(Tlist& f_list, Tlist& s_list) {
     while (p1 != nullptr) {
       if (p2 == nullptr) {
         return false;
-      } else if (p1->data == p2->data) {
+      }
+      else if (p1->data == p2->data) {
         p1 = p1->next;
         p2 = p2->next;
-      } else {
+      }
+      else {
         break;
       }
     }
