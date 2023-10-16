@@ -267,14 +267,13 @@ void swapListNodes(Tlist a, Tlist b) {
   a->data -= b->data;
 }
 
-
 bool isEqual(const Tlist& fHead, const Tlist& sHead) {
   Tlist pf = fHead;
   Tlist ps = sHead;
   if (pf == nullptr && ps == nullptr) {
     return true;
   }
-  if (pf == nullptr || ps == nullptr) { // что?
+  if (pf == nullptr || ps == nullptr) {  // что?
     return false;
   }
 
@@ -284,6 +283,28 @@ bool isEqual(const Tlist& fHead, const Tlist& sHead) {
     ps = ps->next;
   }
   return pf == ps;
+}
+
+// write a function that compares two lists and returns true if they are equal,
+// it takes 4 arguments: pointers to the beginning of the first and second lists
+// and pointers to the end of the first and second lists
+bool isEqual(const Tlist& fHead, const Tlist& fEnd, const Tlist& sHead,
+             const Tlist& sEnd) {
+  Tlist pf = fHead;
+  Tlist ps = sHead;
+  if (pf == nullptr && ps == nullptr) {
+    return true;
+  }
+  if (pf == nullptr || ps == nullptr) {
+    return false;
+  }
+
+  while (pf != fEnd && ps != sEnd) {
+    if (pf->data != ps->data) return false;
+    pf = pf->next;
+    ps = ps->next;
+  }
+  return pf == fEnd && ps == sEnd;
 }
 
 void swapListEdges(Tlist& head) {
@@ -312,12 +333,11 @@ void swapListEdges(Tlist& head) {
 
     tail = nullptr;
     prevTail = nullptr;
-  }
-  else
+  } else
     return;
 }
 
-
+// не работает когда мин и макс вплотную(adjacent)
 void swapListExtremes(Tlist& head) {
   if (head && head->next && head->next->next) {
     Tlist min_(nullptr), max_(nullptr), prevMin(nullptr), prevMax(nullptr);
@@ -356,16 +376,14 @@ void swapListExtremes(Tlist& head) {
 
     if (max_ != head) {
       prevMax->next = min_;
-    }
-    else {
+    } else {
       head = min_;
     }
 
     if (prevMin !=
-      nullptr) {  // не можем сделать (min_ != head) из-за строчки 365
+        nullptr) {  // не можем сделать (min_ != head) из-за строчки 365
       prevMin->next = max_;
-    }
-    else {
+    } else {
       head = max_;
     }
 
@@ -373,8 +391,7 @@ void swapListExtremes(Tlist& head) {
     min_->next = max_->next;
     max_->next = temp;
 
-  }
-  else {
+  } else {
     return;
   }
 }
@@ -390,12 +407,10 @@ bool subListSearch(Tlist& f_list, Tlist& s_list) {
     while (p1 != nullptr) {
       if (p2 == nullptr) {
         return false;
-      }
-      else if (p1->data == p2->data) {
+      } else if (p1->data == p2->data) {
         p1 = p1->next;
         p2 = p2->next;
-      }
-      else {
+      } else {
         break;
       }
     }
@@ -418,4 +433,77 @@ void reverseList(Tlist& head) {
     cur = next;
   }
   head = prev;
+}
+
+Tlist reversedList(Tlist head) {
+  Tlist newList = nullptr;
+  Tlist p = head;
+
+  if (p != nullptr) {
+    addToHead(newList, p->data);
+    p = p->next;
+  }
+
+  while (p) {
+    addToHead(newList, p->data);
+    p = p->next;
+  }
+
+  return newList;
+}
+
+// write a function that determines the length of the singly linked list
+int listLength(Tlist head) {
+  int length = 0;
+  Tlist p = head;
+  while (p) {
+    ++length;
+    p = p->next;
+  }
+  return length;
+}
+
+// write a function that return tail of the singly linked list
+Tlist tailOfList(Tlist head) {
+  Tlist p = head;
+  while (p->next) {
+    p = p->next;
+  }
+  return p;
+}
+
+Tlist middleOfList(Tlist head) {
+  Tlist slow_p = head, fast_p = head;
+  while (fast_p->next != nullptr && fast_p->next->next != nullptr) {
+    fast_p = fast_p->next->next;
+    slow_p = slow_p->next;
+  }
+  return slow_p;
+}
+
+Tlist prevToMiddleOfList(Tlist head) {
+  Tlist slow_p = head, fast_p = head;
+  Tlist prev_p = nullptr;
+  while (fast_p->next != nullptr && fast_p->next->next != nullptr) {
+    prev_p = slow_p;
+    fast_p = fast_p->next->next;
+    slow_p = slow_p->next;
+  }
+  return prev_p;
+}
+
+bool isListPalindrome(Tlist head) {
+  Tlist middle_p = middleOfList(head);
+
+  if (middle_p != nullptr) {
+    Tlist secondHalf = reversedList(middle_p->next);
+
+    if (listLength(head) % 2 != 0) {
+      Tlist prev_p = prevToMiddleOfList(head);
+      return isEqual(head, prev_p, secondHalf, tailOfList(secondHalf));
+    } else
+      return isEqual(head, middle_p, secondHalf, tailOfList(secondHalf));
+  }
+
+  return false;
 }

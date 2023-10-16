@@ -3,7 +3,10 @@
 
 #include "node.h"
 
+using namespace std;
+
 int main() {
+  /*
   srand(time(NULL));
 
   // ------------------------ FIRST LAB
@@ -121,5 +124,24 @@ int main() {
   printList(listStack);
   std::cout << std::endl << "Ordered: ";
   printList(listOrder);
-  // ------------------------ OTHER TESTS END
+  // ------------------------ OTHER TESTS END */
+
+  Tlist TestNegative = nullptr;
+  std::vector<datatype> TN_1{-3, 0, -3};
+  createFromSeries(TestNegative, TN_1);
+
+  Tlist listQueue = nullptr;
+  Tlist listStack = nullptr;
+  Tlist listOrder = nullptr;
+  listQueue = createAsQueue(11);
+  listStack = createAsStack(10);
+  listOrder = createByOrder(10);
+
+  //printList(listQueue);
+  //reverseList(listQueue);
+  cout << endl;
+  printList(TestNegative);
+
+  cout << endl << isListPalindrome(TestNegative);
+  printList(TestNegative);
 }
